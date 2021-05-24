@@ -16,30 +16,35 @@ const HomeView = () => {
     </li>
   );
 
+  const renderLinks = () => (
+    <nav>
+      <ol>
+        {renderLink("/aggrid-basics", "Ag Grid Basics")}
+        {renderLink(
+          "/aggrid-update-delete-columns",
+          "Updating and Deleting Columns"
+        )}
+      </ol>
+    </nav>
+  );
+
+  const renderExternalLinks = () => (
+    <ul>
+      {renderExternalLink("https://github.com/wc0599/AgGrid-React", "GitHub")}
+      {renderExternalLink(
+        "https://www.ag-grid.com/react-grid/",
+        "Ag-Grid Docs"
+      )}
+    </ul>
+  );
+
   return (
     <>
       <h1>AgGrid Basics in React</h1>
-      <nav>
-        <ol>
-          {renderLink("/aggrid-basics", "Ag Grid Basics")}
-          {renderLink(
-            "/aggrid-update-delete-columns",
-            "Updating and Deleting Columns"
-          )}
-        </ol>
-      </nav>
+      {renderLinks()}
       <nav>
         <p>External Links:</p>
-        <ul>
-          {renderExternalLink(
-            "https://github.com/wc0599/AgGrid-React",
-            "GitHub"
-          )}
-          {renderExternalLink(
-            "https://www.ag-grid.com/react-grid/",
-            "Ag-Grid Docs"
-          )}
-        </ul>
+        {renderExternalLinks()}
       </nav>
     </>
   );

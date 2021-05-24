@@ -34,12 +34,14 @@ const AgGridDynamicColumnsView = () => {
 
   useEffect(() => {
     if (forceRefresh) {
+      // refreshCells allow grid API to update the cells if the data is updated
       setTimeout(() => gridApi.refreshCells({ force: true }));
       setForceRefresh(false);
     }
   }, [forceRefresh]);
 
   const onGridReady = (params) => {
+    // refreshCells allow updatesgrid API to update the cells if the data is updated
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
 
@@ -50,9 +52,8 @@ const AgGridDynamicColumnsView = () => {
     );
     httpRequest.send();
     httpRequest.onreadystatechange = () => {
-      if (httpRequest.readyState === 4 && httpRequest.status === 200) {
+      if (httpRequest.readyState === 4 && httpRequest.status === 200)
         setRowData(JSON.parse(httpRequest.responseText));
-      }
     };
   };
 
@@ -81,7 +82,31 @@ const AgGridDynamicColumnsView = () => {
   };
 
   const renderColumns = () =>
-    columns.map((column) => <AgGridColumn {...column} key={column.field} />);
+    columns.map((column) => {
+      switch (column.field) {
+        case "athlete":
+        case "age":
+          return (
+            <AgGridColumn
+              {...column}
+              sortable={true}
+              filter={true}
+              rowGroup={true}
+              key={column.field}
+            />
+          );
+        default:
+          return (
+            <AgGridColumn
+              {...column}
+              sortable={true}
+              filter={true}
+              key={column.field}
+              cellRenderer="agGroupCellRenderer"
+            />
+          );
+      }
+    });
 
   const setValueFormatters = () => {
     const newColumns = gridApi.getColumnDefs();
@@ -120,7 +145,15 @@ const AgGridDynamicColumnsView = () => {
       >
         <AgGridReact
           rowData={rowData}
-          onGridReady={onGridReady}
+          rowSelection="multiple"
+          onGridReady={onGridReady} // Receives the grid APIs. onGridReady stores the api for later use
+          groupSelectsChildren={true}
+          autoGroupColumnDef={{
+            headerName: "Athlete",
+            field: "athlete",
+            cellRenderer: "agGroupCellRenderer",
+            cellRendererParams: { checkbox: true },
+          }}
           defaultColDef={{
             initialWidth: 100,
             sortable: true,

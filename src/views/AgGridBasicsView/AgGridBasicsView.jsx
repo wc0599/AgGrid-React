@@ -63,7 +63,6 @@ const AgGridBasicsView = () => {
             field="make"
             sortable={true}
             filter={true}
-            checkboxSelection={true}
             rowGroup={true}
           />
           <AgGridColumn field="price" sortable={true} filter={true} />
