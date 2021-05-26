@@ -4,6 +4,7 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import MedalCellRenderer from "./MedalCellRenderer.jsx";
 import TotalValueRenderer from "./TotalValueRenderer.jsx";
+import "./AgGridCustomCellRendererView.scss";
 
 const AgGridCustomCellRendererView = () => {
   const [gridApi, setGridApi] = useState(null);
@@ -25,6 +26,7 @@ const AgGridCustomCellRendererView = () => {
 
   return (
     <>
+      <a href="/">Home</a>
       <h1>Cell Renderer</h1>
       <h3>
         By default the grid creates cell values using simple text. If you want
