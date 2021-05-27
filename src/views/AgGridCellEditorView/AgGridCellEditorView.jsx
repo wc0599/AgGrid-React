@@ -61,7 +61,7 @@ const AgGridCellEditor = () => {
             doublingEditor: DoublingEditor,
             moodRenderer: MoodRenderer,
             moodEditor: MoodEditor,
-            numbericEditor: NumericEditor,
+            numericEditor: NumericEditor,
           }}
           defaultColDef={{
             editable: true,

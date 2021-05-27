@@ -25,6 +25,7 @@ const HomeView = () => {
           "Updating and Deleting Columns"
         )}
         {renderLink("/aggrid-custom-cell-render", "Custom Cell Render")}
+        {renderLink("/aggrid-cell-editor", "Cell Editor")}
       </ol>
     </nav>
   );

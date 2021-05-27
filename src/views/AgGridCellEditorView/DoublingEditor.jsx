@@ -1,6 +1,12 @@
-import { useState, useRef, useEffect, useImperativeHandle } from "react";
+import {
+  forwardRef,
+  useState,
+  useRef,
+  useEffect,
+  useImperativeHandle,
+} from "react";
 
-const DoublingEditor = (props, ref) => {
+const DoublingEditor = forwardRef((props, ref) => {
   const [value, setValue] = useState(parseInt(props.value));
   const refInput = useRef(null);
 
@@ -40,6 +46,6 @@ const DoublingEditor = (props, ref) => {
       style={{ width: "100%" }}
     />
   );
-};
+});
 
 export default DoublingEditor;
